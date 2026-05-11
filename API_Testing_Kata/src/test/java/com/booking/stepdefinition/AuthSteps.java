@@ -1,4 +1,5 @@
 package com.booking.stepdefinition;
+import com.booking.models.AuthRequest;
 import io.restassured.response.Response;
 import com.booking.context.TestContext;
 import com.booking.services.AuthService;
@@ -15,17 +16,19 @@ public class AuthSteps {
     @When("I send credentials with username {string} and password {string}")
     public void loginWithParams(String username, String password) {
 
-        response = io.restassured.RestAssured
-                .given()
-                .header("Content-Type", "application/json")
-                .body("{\"username\":\"" + username + "\", \"password\":\"" + password + "\"}")
-                .when()
-                .post("https://automationintesting.online/auth/login/");
+        AuthRequest request = new AuthRequest();
+        request.setUsername(username);
+        request.setPassword(password);
 
+        response = service.generateToken(request);
+    }
+    @Then("response should contain {string}")
+    public void response_should_contain(String expectedText) {
+        response.then().body(org.hamcrest.Matchers.containsString(expectedText));
     }
 
     @Then("response status should be {int}")
-    public void response_status_should_be(Integer expectedStatus) {
-        response.then().statusCode(expectedStatus);
+    public void response_status_should_be(Integer statusCode) {
+        response.then().statusCode(statusCode);
     }
 }

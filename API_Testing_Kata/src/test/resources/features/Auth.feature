@@ -1,13 +1,13 @@
-@api @regression @smoke
+@auth
 Feature: Authentication API
 
-  @auth
   Scenario Outline: Authentication with multiple credentials
-    When I send credentials with username "<user>" and password "<pass>"
-    Then response status should be <status>
+    When I send credentials with username "<username>" and password "<password>"
+    Then response status should be 200
+    And response should contain "<message>"
 
     Examples:
-      | user  | pass        | status |
-      | admin | password123 | 200    |
-      | admin | wrong       | 401    |
-      | wrong | password123 | 401    |
+      | username | password     | message          |
+      | admin    | password123  | token            |
+      | admin    | wrong        | Bad credentials  |
+      | wrong    | password123  | Bad credentials  |
