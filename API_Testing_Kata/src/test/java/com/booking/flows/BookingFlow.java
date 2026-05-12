@@ -50,11 +50,12 @@ public class BookingFlow {
     }
 
     //Negative & Edge Cases
+    // Dans BookingFlow.java
     public void createBookingWithCustomFirstName(String name) {
-        // Utilisation d'une Map pour simuler le JSON de l'OpenAPI
+        // Utilisation d'une Map pour pouvoir envoyer n'importe quoi (vide, trop long, etc.)
         Map<String, Object> body = new HashMap<>();
         body.put("roomid", 1);
-        body.put("firstname", name); // La valeur de ton Scenario Outline
+        body.put("firstname", name);
         body.put("lastname", "Doe");
         body.put("depositpaid", true);
         body.put("email", "test@example.com");
@@ -65,10 +66,9 @@ public class BookingFlow {
         dates.put("checkout", "2025-01-02");
         body.put("bookingdates", dates);
 
-        // Envoi via l'endpoint qui accepte maintenant un Object (Map ou Booking)
+        // On passe le body à l'endpoint
         Response response = BookingEndpoint.create(body);
         context.setResponse(response);
     }
-
 
 }

@@ -6,8 +6,10 @@ import io.restassured.response.Response;
 
 public class BookingEndpoint {
 
-    public static Response create(Booking body) {
-        return RestClient.getRequest().body(body).post(Endpoints.BOOKING);
+    public static Response create(Object body) { // Remplacer Booking par Object
+        return RestClient.getRequest()
+                .body(body)
+                .post("/booking");
     }
 
 
