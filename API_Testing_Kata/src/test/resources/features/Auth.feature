@@ -2,7 +2,7 @@
 Feature: Authentication
 
   Scenario Outline: Authentication with multiple credentials
-    When I send credentials with username "<username>" and password "<password>"
+    Given I send credentials with username "<username>" and password "<password>"
     Then response status should be <status>
     And response should contain "<expected>"
 

@@ -3,6 +3,7 @@ package com.booking.stepdefinition;
 import com.booking.context.TestContext;
 import com.booking.flows.AuthFlow;
 import com.booking.validations.ResponseValidator;
+import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
@@ -10,7 +11,7 @@ public class AuthSteps {
     private final AuthFlow authFlow = new AuthFlow();
     private final TestContext context = TestContext.getInstance();
 
-    @When("I send credentials with username {string} and password {string}")
+    @Given("I send credentials with username {string} and password {string}")
     public void stepLogin(String username, String password) {
         authFlow.login(username, password);
     }

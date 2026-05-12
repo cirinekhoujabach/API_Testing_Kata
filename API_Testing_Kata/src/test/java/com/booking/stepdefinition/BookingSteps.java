@@ -58,4 +58,19 @@ public class BookingSteps {
 
     @Then("the deletion should be denied")
     public void stepVerifyDenied() { ResponseValidator.validateStatus(context.getResponse(), 403); }
-}
+
+                 //negative Scenario outline
+    @When("I create a booking with firstname {string}")
+    public void stepCreateCustomName(String name) {
+        bookingFlow.createBookingWithCustomFirstName(name);
+    }
+
+    @Then("the response should contain error message {string}")
+    public void stepVerifyErrorMsg(String expected) {
+        ResponseValidator.validateMessageInList(context.getResponse(), "errors", expected);
+    }
+    }
+
+
+
+

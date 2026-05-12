@@ -10,11 +10,14 @@ public class BookingEndpoint {
         return RestClient.getRequest().body(body).post(Endpoints.BOOKING);
     }
 
+
     public static Response get(int id) {
         return RestClient.getRequest().pathParam("id", id).get(Endpoints.BOOKING_BY_ID);
     }
 
     public static Response delete(int id) {
         return RestClient.getRequest().pathParam("id", id).delete(Endpoints.BOOKING_BY_ID);
+
+
     }
 }

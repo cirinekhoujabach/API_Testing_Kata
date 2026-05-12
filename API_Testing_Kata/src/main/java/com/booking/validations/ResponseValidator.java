@@ -1,6 +1,9 @@
 package com.booking.validations;
 
 import io.restassured.response.Response;
+
+import java.util.List;
+
 import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 import static org.hamcrest.Matchers.*;
 
@@ -10,7 +13,6 @@ public class ResponseValidator {
         if (expectedCode == 201 || expectedCode == 200) {
             response.then().statusCode(anyOf(equalTo(201), equalTo(200)));
         } else if (expectedCode == 204) {
-            // L'API renvoie souvent 202 ou 201 au lieu de 204
             response.then().statusCode(anyOf(equalTo(204), equalTo(202), equalTo(201), equalTo(200)));
         } else {
             response.then().statusCode(expectedCode);
@@ -39,7 +41,14 @@ public class ResponseValidator {
     }
 
     public static void validateRejected(Response response) {
-        // Accepte tout code d'erreur (4xx ou 5xx) pour les tests négatifs
         response.then().statusCode(greaterThanOrEqualTo(400));
+    }
+
+    public static void validateMessageInList(Response response, String path, String expectedMessage) {
+        List<String> list = response.jsonPath().getList(path);
+
+        if (list == null || !list.contains(expectedMessage)) {
+            throw new AssertionError("Le message '" + expectedMessage + "' est absent du champ '" + path + "'. Reçu : " + list);
+        }
     }
 }
