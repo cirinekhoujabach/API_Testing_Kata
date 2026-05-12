@@ -127,17 +127,3 @@ New APIs can be added without impacting existing layers.
 
 ---
 
-## 🧠 Architecture Diagram
-
-```mermaid
-graph TD
-
-A[Feature Files (.feature)] --> B[Step Definitions]
-B --> C[Services Layer]
-C --> D[Endpoints Layer]
-D --> E[Rest Client]
-E --> F[Restful Booker API]
-
-F --> G[API Response]
-G --> H[Response Validation]
-H --> I[Test Assertions]
