@@ -1,19 +1,43 @@
 {
+  "$schema": "http://json-schema.org/draft-04/schema#",
   "type": "object",
-  "required": ["bookingid", "booking"],
   "properties": {
-    "bookingid": { "type": "integer" },
-    "booking": {
+    "bookingid": {
+      "type": "integer"
+    },
+    "roomid": {
+      "type": "integer"
+    },
+    "firstname": {
+      "type": "string"
+    },
+    "lastname": {
+      "type": "string"
+    },
+    "depositpaid": {
+      "type": "boolean"
+    },
+    "bookingdates": {
       "type": "object",
-      "required": ["firstname", "lastname", "totalprice", "depositpaid", "bookingdates"],
       "properties": {
-        "firstname": { "type": "string" },
-        "lastname": { "type": "string" },
-        "bookingdates": {
-          "type": "object",
-          "required": ["checkin", "checkout"]
+        "checkin": {
+          "type": "string"
+        },
+        "checkout": {
+          "type": "string"
         }
-      }
+      },
+      "required": [
+        "checkin",
+        "checkout"
+      ]
     }
-  }
+  },
+  "required": [
+    "bookingid",
+    "firstname",
+    "lastname",
+    "depositpaid",
+    "bookingdates"
+  ]
 }

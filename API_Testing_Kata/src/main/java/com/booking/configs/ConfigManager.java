@@ -1,4 +1,4 @@
-package com.booking.utils;
+package com.booking.configs;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -28,7 +28,7 @@ public class ConfigManager {
     public static String getProperty(String key) {
         String value = properties.getProperty(key);
         if (value != null) {
-            return value.trim(); 
+            return value.trim();
         }
         throw new RuntimeException("La clé '" + key + "' n'a pas été trouvée dans config.properties");
     }
