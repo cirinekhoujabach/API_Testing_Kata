@@ -28,7 +28,7 @@ public class ConfigManager {
     public static String getProperty(String key) {
         String value = properties.getProperty(key);
         if (value != null) {
-            return value.trim(); // Enlève les espaces ou retours à la ligne parasites
+            return value.trim(); 
         }
         throw new RuntimeException("La clé '" + key + "' n'a pas été trouvée dans config.properties");
     }

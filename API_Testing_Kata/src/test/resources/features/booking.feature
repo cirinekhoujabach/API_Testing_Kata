@@ -2,7 +2,7 @@
 Feature: Booking API - Business lifecycle
 
   Scenario: Create and retrieve a valid booking
-    When I create a booking with valid data
+    Given I create a booking with valid data
     Then the booking is successfully created
     And the booking data is correctly stored
 
@@ -17,7 +17,7 @@ Feature: Booking API - Business lifecycle
 
 
   Scenario: Booking dates must be valid
-    When I create a booking with inverted dates
+    Given I create a booking with inverted dates
     Then the booking should be rejected
     And an error message should be returned
 
@@ -30,5 +30,6 @@ Feature: Booking API - Business lifecycle
 
   Scenario: Authorized user can delete booking
     Given I am authenticated as admin
+    And I create a booking with valid data
     When I delete the booking
     Then the booking is successfully deleted

@@ -1,27 +1,20 @@
 package com.booking.services;
 
-import com.booking.endpoints.AuthEndpoint;
+import com.booking.client.RestClient;
 import com.booking.models.AuthRequest;
 import io.restassured.response.Response;
 
 public class AuthService {
 
+
     public Response generateToken(AuthRequest request) {
-        return AuthEndpoint.login(request);
+        return RestClient.getRequest()
+                .body(request)
+                .post("/auth/login");
     }
+
     public Response loginValid() {
-        AuthRequest req = new AuthRequest();
-        req.setUsername("admin");
-        req.setPassword("password123");
-
-        return generateToken(req);
-    }
-
-    public Response loginInvalid() {
-        AuthRequest req = new AuthRequest();
-        req.setUsername("wrong");
-        req.setPassword("wrong");
-
+        AuthRequest req = new AuthRequest("admin", "password");
         return generateToken(req);
     }
 }

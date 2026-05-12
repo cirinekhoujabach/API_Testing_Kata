@@ -2,32 +2,16 @@
   "type": "object",
   "required": ["bookingid", "booking"],
   "properties": {
-    "bookingid": { "type": "integer", "minimum": 1 },
+    "bookingid": { "type": "integer" },
     "booking": {
       "type": "object",
-      "required": [
-        "roomid",
-        "firstname",
-        "lastname",
-        "depositpaid",
-        "bookingdates",
-        "email",
-        "phone"
-      ],
+      "required": ["firstname", "lastname", "totalprice", "depositpaid", "bookingdates"],
       "properties": {
-        "roomid": { "type": "integer" },
         "firstname": { "type": "string" },
         "lastname": { "type": "string" },
-        "depositpaid": { "type": "boolean" },
-        "email": { "type": "string" },
-        "phone": { "type": "string" },
         "bookingdates": {
           "type": "object",
-          "required": ["checkin", "checkout"],
-          "properties": {
-            "checkin": { "type": "string" },
-            "checkout": { "type": "string" }
-          }
+          "required": ["checkin", "checkout"]
         }
       }
     }
